@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KBC Ultimate</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- 🎬 INTRO -->
+<div id="intro">
+  <h1>🎬 KAUN BANEGA CROREPATI 🎬</h1>
+  <button onclick="startGame()">Start Game</button>
+</div>
+
+<!-- 🎮 GAME -->
+<div id="game">
+
+  <div id="topbar">
+    <div id="money">₹ 0</div>
+    <div id="timer">⏳ 30</div>
+  </div>
+
+  <div id="question"></div>
+
+  <div class="options">
+    <button onclick="check(0)" id="btn0"></button>
+    <button onclick="check(1)" id="btn1"></button>
+    <button onclick="check(2)" id="btn2"></button>
+    <button onclick="check(3)" id="btn3"></button>
+  </div>
+
+  <div class="controls">
+    <button onclick="lifeline5050()">50-50</button>
+    <button onclick="audiencePoll()">Audience</button>
+    <button onclick="phoneFriend()">Friend</button>
+    <button onclick="quitGame()">Quit</button>
+    <button onclick="toggleLang()">🌐 Language</button>
+    <button onclick="toggleMusic()">🔊 Music</button>
+  </div>
+
+  <p id="result"></p>
+
+</div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" src="assets/kbc_music.mp3" loop></audio>
+<audio id="correctSound" src="assets/correct.wav"></audio>
+<audio id="wrongSound" src="assets/wrong.wav"></audio>
+<audio id="clickSound" src="assets/click.wav"></audio>
+<audio id="tickSound" src="assets/tick.mp3"></audio>
+<audio id="suspense" src="assets/suspense.mp3"></audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>

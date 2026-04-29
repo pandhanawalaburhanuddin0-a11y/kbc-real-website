@@ -1,0 +1,62 @@
+body {
+  background: url("assets/kbc_bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+}
+
+#intro {
+  margin-top: 150px;
+}
+
+#game {
+  display: none;
+}
+
+h1 {
+  color: gold;
+  text-shadow: 0 0 10px gold;
+}
+
+#topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#money { color: lightgreen; }
+#timer { color: cyan; }
+
+#question {
+  font-size: 22px;
+  margin: 20px;
+  animation: fadeIn 0.5s;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 90%;
+  max-width: 500px;
+  margin: auto;
+}
+
+button {
+  padding: 14px;
+  background: linear-gradient(45deg,#1a237e,#3949ab);
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
+
+button:hover { box-shadow: 0 0 10px cyan; }
+
+.correct { background: green !important; }
+.wrong { background: red !important; }
+
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity:1;}
+}
