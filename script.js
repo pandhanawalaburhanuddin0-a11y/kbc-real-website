@@ -2,21 +2,24 @@ let username="";
 let i=0, money=0, safeMoney=0;
 let timer, timeLeft=30;
 
-const levels=[5000,10000,15000,20000,25000];
-const checkpoints={4:25000};
+const levels=[5000,10000,15000,20000,25000,50000,100000,200000,300000,500000,750000,1250000,2500000,5000000,10000000,70000000];
+const checkpoints={4:25000,9:500000,15:70000000};
 
 const questions=[
 {q:"Largest planet?",op:["Mars","Jupiter","Earth","Saturn"],ans:1},
 {q:"Pink city?",op:["Jaipur","Udaipur","Jodhpur","Bikaner"],ans:0},
 {q:"Seconds in hour?",op:["60","360","3600","36000"],ans:2},
 {q:"Symbol Au?",op:["Silver","Gold","Copper","Iron"],ans:1},
-{q:"National bird?",op:["Peacock","Crow","Parrot","Eagle"],ans:0}
+{q:"National bird?",op:["Peacock","Crow","Parrot","Eagle"],ans:0},
+{q:"First Indian in space?",op:["Kalpana","Sunita","Rakesh Sharma","Ravi"],ans:2},
+{q:"Ram wife?",op:["Sita","Urmila","Mandavi","Shruti"],ans:0},
+{q:"Blood pump organ?",op:["Liver","Heart","Kidney","Lungs"],ans:1}
 ];
 
 // START
 function startGame(){
   username=document.getElementById("username").value;
-  if(username===""){ alert("Enter name"); return; }
+  if(username===""){alert("Enter name");return;}
 
   document.getElementById("login").style.display="none";
   document.getElementById("game").style.display="block";
@@ -26,10 +29,7 @@ function startGame(){
 
 // LOAD
 function loadQ(){
-  if(i>=questions.length){
-    winGame();
-    return;
-  }
+  if(i>=questions.length){ winGame(); return; }
 
   let q=questions[i];
   document.getElementById("question").innerText=q.q;
@@ -56,16 +56,9 @@ function startTimer(){
     if(timeLeft<=0){
       clearInterval(timer);
       disableOptions();
-      gameOver("Time Up ₹ "+safeMoney);
+      gameOver("⏰ Time Up! ₹ "+safeMoney);
     }
   },1000);
-}
-
-// DISABLE
-function disableOptions(){
-  for(let j=0;j<4;j++){
-    document.getElementById("btn"+j).disabled=true;
-  }
 }
 
 // CHECK
@@ -88,7 +81,14 @@ function check(ans){
 
   } else {
     document.getElementById("btn"+ans).className="wrong";
-    gameOver("Wrong! Take Home ₹ "+safeMoney);
+    gameOver("❌ Wrong! Take Home ₹ "+safeMoney);
+  }
+}
+
+// DISABLE
+function disableOptions(){
+  for(let j=0;j<4;j++){
+    document.getElementById("btn"+j).disabled=true;
   }
 }
 
@@ -125,18 +125,21 @@ function restartGame(){
   loadQ();
 }
 
-// SAVE (LOCAL STORAGE)
+// QUIT
+function quitGame(){
+  clearInterval(timer);
+  disableOptions();
+  gameOver("🏃 Quit ₹ "+money);
+}
+
+// LEADERBOARD (LOCAL)
 function saveScore(score){
   let scores=JSON.parse(localStorage.getItem("kbcScores")) || [];
-
   scores.push({name:username,score:score});
-
   scores.sort((a,b)=>b.score-a.score);
-
   localStorage.setItem("kbcScores",JSON.stringify(scores.slice(0,5)));
 }
 
-// SHOW LEADERBOARD
 function showLeaderboard(){
   let scores=JSON.parse(localStorage.getItem("kbcScores")) || [];
   let list=document.getElementById("scores");
@@ -148,11 +151,4 @@ function showLeaderboard(){
     li.innerText=s.name+" - ₹ "+s.score;
     list.appendChild(li);
   });
-}
-
-// QUIT
-function quitGame(){
-  clearInterval(timer);
-  disableOptions();
-  gameOver("Quit ₹ "+money);
 }
