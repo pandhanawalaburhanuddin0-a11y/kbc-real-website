@@ -8,21 +8,21 @@
 
 <body>
 
-<!-- LOGIN -->
 <div id="login">
-  <h1>🎬 KBC GAME 🎬</h1>
+  <h1>💰 KAUN BANEGA CROREPATI 💰</h1>
   <input id="username" placeholder="Enter your name">
   <button onclick="startGame()">Start Game</button>
 </div>
 
-<!-- GAME -->
 <div id="game">
   <div id="topbar">
     <div id="money">₹ 0</div>
     <div id="timer">⏳ 30</div>
   </div>
 
-  <div id="question"></div>
+  <div id="questionBox">
+    <p id="question"></p>
+  </div>
 
   <div class="options">
     <button id="btn0" onclick="check(0)"></button>
@@ -31,26 +31,25 @@
     <button id="btn3" onclick="check(3)"></button>
   </div>
 
-  <button onclick="quitGame()">Quit</button>
+  <div class="controls">
+    <button onclick="quitGame()">Quit</button>
+  </div>
 
   <p id="result"></p>
   <button id="restartBtn" onclick="restartGame()">Restart</button>
 </div>
 
-<!-- WIN SCREEN -->
 <div id="winScreen">
-  <h1>🏆 CONGRATULATIONS 🏆</h1>
+  <h1>🏆 YOU WON 🏆</h1>
   <p id="finalMoney"></p>
   <button onclick="restartGame()">Play Again</button>
 </div>
 
-<!-- LEADERBOARD -->
 <div id="leaderboard">
   <h2>🏆 Leaderboard</h2>
   <ul id="scores"></ul>
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
